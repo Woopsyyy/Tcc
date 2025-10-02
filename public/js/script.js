@@ -7,10 +7,10 @@ form.addEventListener('submit', async e => {
   e.preventDefault();
   error.style.display = 'none';
   const validUsername = username.value && username.value.trim().length > 0;
-  const validPass = password.value && password.value.length >= 6;
+  const validPass = password.value && password.value.trim().length > 0;
   if (!validUsername || !validPass) {
     error.style.display = 'block';
-    error.textContent = 'Please enter a valid username and password (min 6 characters).';
+    error.textContent = 'Please enter a username and password.';
     return;
   }
 
