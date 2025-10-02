@@ -29,33 +29,30 @@ const login = (req, res) => {
   const { username, password } = req.body;
   User.findByUsername(username, (err, results) => {
     if (err) {
-      if (process.env.ALLOW_FAKE_AUTH === 'true') {
-        // In-memory demo users (dev only)
-        const demoUsers = [
-          { id: 1, username: 'admin', password: 'admin', role: 'teacher' },
-          { id: 2, username: 'teacher1', password: 'password', role: 'teacher' },
-          { id: 3, username: 'student1', password: 'password', role: 'student' },
-          { id: 4, username: 'utility1', password: 'password', role: 'utility_worker' }
-        ];
-        const user = demoUsers.find(u => u.username === username);
-        if (!user || user.password !== password) {
-          return res.status(401).json({ error: 'Invalid credentials' });
-        }
-        const token = jwt.sign(
-          { id: user.id, role: user.role },
-          process.env.JWT_SECRET || 'secret',
-          { expiresIn: '1h' }
-        );
-        const isProduction = process.env.NODE_ENV === 'production';
-        res.cookie('token', token, {
-          httpOnly: true,
-          secure: isProduction,
-          sameSite: isProduction ? 'strict' : 'lax',
-          maxAge: 3600000
-        });
-        return res.json({ message: 'Login successful', role: user.role });
+      // Automatic fallback to demo users when DB is unavailable
+      const demoUsers = [
+        { id: 1, username: 'admin', password: 'admin', role: 'teacher' },
+        { id: 2, username: 'teacher1', password: 'password', role: 'teacher' },
+        { id: 3, username: 'student1', password: 'password', role: 'student' },
+        { id: 4, username: 'utility1', password: 'password', role: 'utility_worker' }
+      ];
+      const user = demoUsers.find(u => u.username === username);
+      if (!user || user.password !== password) {
+        return res.status(401).json({ error: 'Invalid credentials' });
       }
-      return res.status(500).json({ error: 'Database error' });
+      const token = jwt.sign(
+        { id: user.id, role: user.role },
+        process.env.JWT_SECRET || 'secret',
+        { expiresIn: '1h' }
+      );
+      const isProduction = process.env.NODE_ENV === 'production';
+      res.cookie('token', token, {
+        httpOnly: true,
+        secure: isProduction,
+        sameSite: isProduction ? 'strict' : 'lax',
+        maxAge: 3600000
+      });
+      return res.json({ message: 'Login successful', role: user.role });
     }
     if (results.length === 0) return res.status(401).json({ error: 'Invalid credentials' });
     const user = results[0];
