@@ -3,7 +3,12 @@ const path = require('path');
 const chokidar = require('chokidar');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
-const db = require('./config/db');
+let db;
+try {
+  db = require('./config/db');
+} catch (err) {
+  console.warn('[warning] DB module not found or failed to load. Continuing without DB.');
+}
 const authenticateToken = require('./middleware/auth');
 
 let logCount = 0;
