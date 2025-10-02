@@ -25,13 +25,24 @@ A Node.js Express application with MySQL database for managing attendance and us
 
 1. Ensure MySQL is installed and running on your system.
 
-2. Create a new MySQL database.
+2. Create (or ensure) the database and tables exist. The app includes an initializer that will create tables and seed users on startup if the DB is reachable.
 
-3. Import the database schema:
-   - Use a MySQL client (e.g., MySQL Workbench, phpMyAdmin) to import `database/init.sql` into your database.
+3. Configure database connection via environment variables (create a `.env` in project root):
+   ```
+   DB_HOST=localhost
+   DB_USER=root
+   DB_PASSWORD=your_mysql_password
+   DB_NAME=attendance_db
+   JWT_SECRET=change_me
+   ```
 
-4. Configure database connection:
-   - Update `Server/config/db.js` with your database credentials if necessary.
+4. Start the app normally with `npm start`. On first run, it will attempt to create tables and seed users.
+
+5. Seeded credentials (if tables empty):
+   - admin / admin (role: teacher)
+   - teacher1 / password (role: teacher)
+   - student1 / password (role: student)
+   - utility1 / password (role: utility_worker)
 
 ## Starting the Server
 

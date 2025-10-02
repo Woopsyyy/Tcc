@@ -9,6 +9,12 @@ try {
 } catch (err) {
   console.warn('[warning] DB module not found or failed to load. Continuing without DB.');
 }
+let initializeDatabase;
+try {
+  ({ initializeDatabase } = require('./config/dbInit'));
+} catch (err) {
+  initializeDatabase = null;
+}
 const authenticateToken = require('./middleware/auth');
 
 let logCount = 0;
@@ -51,7 +57,7 @@ app.use((req, res, next) => {
 });
 
 // Start server
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.clear();
   console.log(`\x1b[32m
 
@@ -70,6 +76,13 @@ app.listen(PORT, () => {
      🌐 http://localhost:${PORT}
 
   \x1b[0m`);
+  if (initializeDatabase) {
+    try {
+      await initializeDatabase();
+    } catch (err) {
+      console.warn('[warning] Skipping DB init due to error. App will still run.');
+    }
+  }
 });
 
 // File watcher for logging changes
