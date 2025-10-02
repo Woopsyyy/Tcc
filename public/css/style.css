@@ -1,0 +1,124 @@
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #00796b;
+    }
+
+    .container {
+      width: 800px;
+      height: 500px;
+      display: flex;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      background: white;
+    }
+
+    .left::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -60px;
+      width: 120px;
+      height: 100%;
+      background: white;
+      border-radius: 50% / 100%;
+    }
+
+    .right {
+      flex: 1;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px;
+    }
+
+    .right h2 {
+      margin-bottom: 10px;
+      font-size: 28px;
+      color: #333;
+    }
+
+    .right p {
+      margin-bottom: 20px;
+      color: #777;
+    }
+
+    .input-box {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    .input-box input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      outline: none;
+    }
+
+    .input-box input:focus {
+      border-color: #26a69a;
+    }
+
+    .forgot {
+      width: 100%;
+      text-align: right;
+      margin-bottom: 20px;
+    }
+
+    .forgot a {
+      text-decoration: none;
+      color: #26a69a;
+      font-size: 14px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 25px;
+      background: #26a69a;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #00796b;
+    }
+
+    .signup {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .signup a {
+      color: #26a69a;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .social {
+      margin-top: 20px;
+    }
+
+    .social a {
+      margin: 0 8px;
+      text-decoration: none;
+      font-size: 20px;
+      color: #333;
+    }

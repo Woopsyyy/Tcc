@@ -1,0 +1,114 @@
+  @font-face {
+    font-family: 'Strike Coffee';
+    src: url(/fonts/StrikeCoffee.ttf);
+    font-weight: normal;
+    font-style: normal;
+  }
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+.head {
+    height: 750px;
+    width: 20%;
+    background-color: #5f6f52;
+    content: 0;
+    border-radius: 30px;
+    position: relative;
+    top: 20px;
+    left: 20px;
+}
+
+.logo img{
+
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  left: 25%;
+  top: 20px;
+}
+
+body {
+
+  background-color: #a9b388;
+}
+
+.btn {
+
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.btn ul {
+
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.btn li {
+  display: flex;
+  justify-content: center;
+
+}
+
+.btn a {
+  text-decoration: none;
+}
+
+
+.frame {
+
+  position: relative;
+  left: 110%;
+  bottom: 300px;
+}
+
+iframe {
+    width: 370%;
+  height: 700px;
+  position: relative;
+  bottom: 230px;
+}
+
+.links {
+
+  position: relative;
+  top: 20px;
+  right: 10px;
+}
+
+.btn-1 {
+
+  padding: 12px 25px;
+  margin: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(45deg, #007bff, #0056b3);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.btn-1:hover {
+
+  background: linear-gradient(45deg, #0056b3, #004080);
+  transform: scale(1.05);
+}
+
+.btn-1:active {
+    transform: scale(0.95);
+
+}

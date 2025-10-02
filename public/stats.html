@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <form>
+        <button class="btn-1">STUDENT</button>
+        <button class="btn-1"> TEACHER</button>
+        <button class="btn-1"> UTILITY WORKERS</button>
+    </form>
+    <script>
+      async function checkAuth() {
+        try {
+          const response = await fetch('/api/auth/verify');
+          if (!response.ok) {
+            window.top.location.href = '/';
+          }
+        } catch (err) {
+          window.top.location.href = '/';
+        }
+      }
+      checkAuth();
+    </script>
+</body>
+</html>
